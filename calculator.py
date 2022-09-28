@@ -9,12 +9,13 @@ on = True
 while True:
     equation = input("What is the equation: ")
     equation = equation.split(' ')
-    operators = ["+", "-", "*", "/", "square", "cube", "pwr", "mod"]
-    short_operators = ["squre", "cube"]
+    OPERATORS = ["+", "-", "*", "/", "square", "cube", "pwr", "mod"]
+    SHORT_OPERATORS = ["squre", "cube"]
+    #first character input is "q", quit calculator
     if equation[0] == "q":
         break
-
-    if equation[0] not in operators:
+    #first input character input does not match requirement
+    if equation[0] not in OPERATORS:
         print("Not an operator")
     else:
 
@@ -24,11 +25,13 @@ while True:
         else:
             if len(equation) < 3:
                 num_1 = equation[1]
-                if equation[0] not in short_operators:
+                if equation[0] not in SHORT_OPERATORS:  #check if correct operators
                     print("Not enough input")
-                if not num_1.isdigit():
+                if not num_1.isdigit():             #check if input are digits
                     print("That is not a number")
                 else:
+                    ## 1 digit function (square and cube)
+
                     if equation[0] == "square":
                         answer = square(float(equation[1]))
                         print(answer)
@@ -39,9 +42,11 @@ while True:
             else:
                 num_1 = equation[1]
                 num_2 = equation[2]
-                if not num_1.isdigit() or not num_2.isdigit():
+                if not num_1.isdigit() or not num_2.isdigit():  #check if input are digits
                     print("That is not a number")  
                 else:
+                    ## 2 digit calculation (+, -, *, /,...)
+                    
                     if equation[0] == "+":
                         answer = add(float(equation[1]), float(equation[2]))
                         print(answer)
