@@ -9,31 +9,38 @@ on = True
 while True:
     equation = input("What is the equation: ")
     equation = equation.split(' ')
+    operators = ["+", "-", "*", "/", "square", "cube", "pwr", "mod"]
+    short_operators = ["squre", "cube"]
     if equation[0] == "q":
         break
 
-    if len(equation) < 2:
-        print("Not enough input")
-    
+    if equation[0] not in operators:
+        print("Not an operator")
     else:
-        if len(equation) < 3:
-            num_1 = equation[1]
-            if not num_1.isdigit():
-                print("That is not a number")
-            else:
-                if equation[0] == "square":
-                    answer = square(float(equation[1]))
-                    print(answer)
-                if equation[0] == "cube":
-                    answer = cube(float(equation[1]))
-                    print(answer)
 
+        if len(equation) < 2:
+            print("Not enough input")
+        
         else:
-            if len(equation) > 2:
+            if len(equation) < 3:
+                num_1 = equation[1]
+                if equation[0] not in short_operators:
+                    print("Not enough input")
+                if not num_1.isdigit():
+                    print("That is not a number")
+                else:
+                    if equation[0] == "square":
+                        answer = square(float(equation[1]))
+                        print(answer)
+                    if equation[0] == "cube":
+                        answer = cube(float(equation[1]))
+                        print(answer)
+
+            else:
                 num_1 = equation[1]
                 num_2 = equation[2]
                 if not num_1.isdigit() or not num_2.isdigit():
-                    print("That is not a number")
+                    print("That is not a number")  
                 else:
                     if equation[0] == "+":
                         answer = add(float(equation[1]), float(equation[2]))
